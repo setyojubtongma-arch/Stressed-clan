@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Stressed Clan</title>
+<meta charset="UTF-8">
+<title>STRESSED CLAN SYSTEM</title>
 
 <style>
 
 body{
-background:#f4f6f9;
 font-family:Arial;
-text-align:center;
-color:#1f2937;
-}
-
-.header{
-background:#2563eb;
+background:#0f172a;
 color:white;
-padding:20px;
-font-size:24px;
+text-align:center;
 }
 
-.card{
-background:white;
-width:350px;
+h1{
+color:#38bdf8;
+}
+
+table{
 margin:auto;
-margin-top:20px;
-padding:20px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,0.1);
+border-collapse:collapse;
+width:90%;
+}
+
+th,td{
+border:1px solid white;
+padding:10px;
 }
 
 button{
-background:#2563eb;
-color:white;
-border:none;
-padding:10px;
+padding:8px 15px;
 margin:5px;
-border-radius:6px;
+border:none;
+border-radius:8px;
+background:#38bdf8;
+cursor:pointer;
+}
+
+button:hover{
+background:#0ea5e9;
 }
 
 input{
@@ -44,211 +46,211 @@ padding:8px;
 margin:5px;
 }
 
-table{
-margin:auto;
-border-collapse:collapse;
-width:320px;
-}
-
-td,th{
-border:1px solid #ddd;
-padding:8px;
-}
-
-th{
-background:#e5e7eb;
-}
-
-.admin{
-display:none;
+.section{
+margin-top:40px;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
-👑 Stressed Clan System
-</div>
+<h1>STRESSED CLAN</h1>
 
-<div class="card">
+<div class="section">
 
-<h3>🔐 Login</h3>
+<h2>🔐 ยืนยันตัวตน</h2>
 
-<input id="email" placeholder="Email">
-
-<br>
-
-<input id="password" type="password" placeholder="Password">
+<input id="name" placeholder="ชื่อ">
+<input id="code" placeholder="รหัส">
 
 <br>
 
-<button onclick="login()">Login</button>
+<button onclick="login()">เข้าสู่ระบบ</button>
 
 <p id="loginStatus"></p>
 
 </div>
 
-<div class="card">
+<div class="section">
 
-<h3>🔎 ดูแต้มตัวเอง</h3>
+<h2>📊 ตารางคะแนน</h2>
 
-<input id="playerName" placeholder="ใส่ชื่อ">
-
-<button onclick="checkPoint()">ดูแต้ม</button>
-
-<p id="pointResult"></p>
+<table id="scoreTable"></table>
 
 </div>
 
-<div class="card">
+<div class="section">
 
-<h3>📊 ตารางคะแนน</h3>
+<h2>💰 ระบบแลกแต้ม</h2>
 
-<table id="table">
+<button onclick="redeem(150,'QUICK Roll')">150 QUICK Roll</button>
 
-<tr>
-<th>ชื่อ</th>
-<th>แต้ม</th>
-<th>Rank</th>
-</tr>
+<button onclick="redeem(400,'VIP')">400 VIP</button>
 
-</table>
+<button onclick="redeem(700,'Chroma Pack')">700 Chroma Pack</button>
 
-</div>
+<button onclick="redeem(900,'Starter Pack')">900 Starter Pack</button>
 
-<div class="card">
+<button onclick="redeem(1100,'Water Doge Pack')">1100 Water Doge Pack</button>
 
-<h3>💰 ระบบแลกแต้ม</h3>
+<button onclick="redeem(1400,'Lucky Pack')">1400 Lucky Pack</button>
 
-<p>150 = QUICK Roll</p>
-<p>300 = เปลี่ยนรูปแคลน</p>
-<p>400 = VIP</p>
-<p>700 = Chroma Pack</p>
-<p>900 = Starter Pack</p>
-<p>1100 = Water Doge Pack</p>
-<p>1400 = Lucky Pack</p>
-<p>1800 = Gwa Pack</p>
-<p>2500 = Gubby Pack</p>
+<button onclick="redeem(1800,'Gwa Pack')">1800 Gwa Pack</button>
 
-<h4>🔒 Secret Reward</h4>
+<button onclick="redeem(2500,'Gubby Pack')">2500 Gubby Pack</button>
 
-<p>25,000 = หัวแคลนแต่งหญิง 1 วัน</p>
+<button onclick="redeem(25000,'Secret Reward')">25000 Secret Reward 😈</button>
+
+<p id="redeemResult"></p>
 
 </div>
 
-<div class="card">
+<div class="section">
 
-<h3>🏆 ระดับแรงค์</h3>
+<h2>📜 ประวัติการแลก</h2>
 
-<p>0 - 299 = Member</p>
-<p>300 - 699 = Elite</p>
-<p>700 - 1499 = Pro</p>
-<p>1500+ = Legend</p>
+<ul id="history"></ul>
 
 </div>
 
-<div class="card">
+<div class="section">
 
-<h3>📜 กฎแคลน</h3>
+<h2>👑 แอดมิน (หัวแคลน)</h2>
 
-<p>กิจกรรมทุกวันศุกร์ 19:00 - 23:00</p>
-<p>ต้อง AFK รวมกัน</p>
+<input id="target" placeholder="ชื่อคน">
 
-<p>มาไม่ทันต้องแจ้งล่วงหน้า</p>
-
-<p>ไม่แจ้ง = -5 แต้ม</p>
-
-<p>หัวแคลนและรองตัดสินถือว่าสิ้นสุด</p>
-
-</div>
-
-<div class="card admin" id="adminPanel">
-
-<h3>👑 Admin Panel</h3>
-
-<input id="adminName" placeholder="ชื่อสมาชิก">
-
-<input id="adminPoint" placeholder="แต้ม">
+<input id="pointChange" placeholder="แต้ม (+ หรือ -)">
 
 <br>
 
-<button onclick="addPoint()">เพิ่มแต้ม</button>
+<button onclick="changePoint()">เปลี่ยนแต้ม</button>
 
-<button onclick="removePoint()">ลดแต้ม</button>
+</div>
+
+<div class="section">
+
+<h2>📜 กฎแคลน</h2>
+
+<p>
+
+🎮 กิจกรรมทุกวันศุกร์ 19:00 – 23:00 AFK รวมกัน
+
+</p>
+
+<p>
+
+ไม่แจ้งล่วงหน้า = -5 แต้ม
+
+</p>
+
+<p>
+
+แจ้งล่วงหน้า = ไม่ถูกหัก
+
+</p>
+
+<p>
+
+Gamepass แลกได้ครั้งเดียวต่อบัญชี
+
+</p>
+
+<p>
+
+Secret Reward
+
+25000 แต้ม = หัวแคลนแต่งหญิง 1 วัน 😈
+
+</p>
 
 </div>
 
 <script>
 
-let members = {
+let admin="บิว"
+
+let members=JSON.parse(localStorage.getItem("members"))||{
 
 "ออม":770,
+
 "ต้น":827,
+
 "โอ๊ค":550,
-"บิว":0
+
+"บิว":25000,
+}
+
+let codes={
+
+"ออม":"k642mut",
+
+"ต้น":"TONTONRODPAN",
+
+"โอ๊ค":"tootuokj",
+
+"บิว":"admin",
+}
+
+let currentUser=null
+
+let history=JSON.parse(localStorage.getItem("history"))||[]
+
+function save(){
+
+localStorage.setItem("members",JSON.stringify(members))
+
+localStorage.setItem("history",JSON.stringify(history))
 
 }
 
-function getRank(point){
+function getRank(p){
 
-if(point >= 1500){
-return "Legend"
-}
+if(p>=2000)return"👑 LEGEND"
 
-if(point >= 700){
-return "Pro"
-}
+if(p>=1000)return"💎 ELITE"
 
-if(point >= 300){
-return "Elite"
-}
+if(p>=700)return"🔥 PRO"
 
-return "Member"
+if(p>=300)return"⭐ MEMBER"
+
+return"🌱 NEW"
 
 }
 
-function render(){
+function renderTable(){
 
-let table = document.getElementById("table")
+let table=document.getElementById("scoreTable")
 
-table.innerHTML = `
-<tr>
-<th>ชื่อ</th>
-<th>แต้ม</th>
-<th>Rank</th>
-</tr>
-`
+table.innerHTML="<tr><th>ชื่อ</th><th>แต้ม</th><th>Rank</th></tr>"
 
-for(let name in members){
+let sorted=Object.entries(members).sort((a,b)=>b[1]-a[1])
 
-table.innerHTML += `
-<tr>
-<td>${name}</td>
-<td>${members[name]}</td>
-<td>${getRank(members[name])}</td>
-</tr>
-`
+for(let m of sorted){
+
+table.innerHTML+=`<tr>
+
+<td>${m[0]}</td>
+
+<td>${m[1]}</td>
+
+<td>${getRank(m[1])}</td>
+
+</tr>`
 
 }
 
 }
 
-function checkPoint(){
+function renderHistory(){
 
-let name = document.getElementById("playerName").value
+let list=document.getElementById("history")
 
-if(members[name] !== undefined){
+list.innerHTML=""
 
-document.getElementById("pointResult").innerText =
-name + " มี " + members[name] + " แต้ม (" + getRank(members[name]) + ")"
+for(let h of history){
 
-}else{
-
-document.getElementById("pointResult").innerText =
-"ไม่พบชื่อ"
+list.innerHTML+=`<li>${h}</li>`
 
 }
 
@@ -256,58 +258,85 @@ document.getElementById("pointResult").innerText =
 
 function login(){
 
-let email = document.getElementById("email").value
-let password = document.getElementById("password").value
+let name=document.getElementById("name").value
 
-if(email === "setyojubtongma@gmail.com" && password === "stressed123"){
+let code=document.getElementById("code").value
 
-document.getElementById("loginStatus").innerText = "Admin Login สำเร็จ"
+if(codes[name]==code){
 
-document.getElementById("adminPanel").style.display = "block"
+currentUser=name
 
-}else{
-
-document.getElementById("loginStatus").innerText = "Login ไม่ถูกต้อง"
-
-}
-
-}
-
-function addPoint(){
-
-let name = document.getElementById("adminName").value
-let point = Number(document.getElementById("adminPoint").value)
-
-if(members[name] !== undefined){
-
-members[name] += point
+document.getElementById("loginStatus").innerText="✅ ล็อกอินสำเร็จ : "+name
 
 }else{
 
-members[name] = point
+document.getElementById("loginStatus").innerText="❌ รหัสผิด"
 
 }
 
-render()
+}
+
+function redeem(cost,item){
+
+if(!currentUser){
+
+document.getElementById("redeemResult").innerText="❌ ต้องล็อกอินก่อน"
+
+return
 
 }
 
-function removePoint(){
+if(members[currentUser]>=cost){
 
-let name = document.getElementById("adminName").value
-let point = Number(document.getElementById("adminPoint").value)
+members[currentUser]-=cost
 
-if(members[name] !== undefined){
+history.push(currentUser+" แลก "+item)
 
-members[name] -= point
+document.getElementById("redeemResult").innerText="🎁 แลกสำเร็จ"
+
+save()
+
+renderTable()
+
+renderHistory()
+
+}else{
+
+document.getElementById("redeemResult").innerText="❌ แต้มไม่พอ"
 
 }
 
-render()
+}
+
+function changePoint(){
+
+if(currentUser!=admin){
+
+alert("เฉพาะหัวแคลนเท่านั้น")
+
+return
 
 }
 
-render()
+let name=document.getElementById("target").value
+
+let change=parseInt(document.getElementById("pointChange").value)
+
+members[name]+=change
+
+history.push("ADMIN เปลี่ยนแต้ม "+name+" "+change)
+
+save()
+
+renderTable()
+
+renderHistory()
+
+}
+
+renderTable()
+
+renderHistory()
 
 </script>
 
